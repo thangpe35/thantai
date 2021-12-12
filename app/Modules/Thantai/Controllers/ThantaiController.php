@@ -1,21 +1,21 @@
 <?php
+namespace App\Modules\Thantai\Controllers;
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\thantai;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 
-class ArticleController extends Controller
+class ThantaiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        return view('mommo.thantai');
+        return view('Thantai::index');
     }
 
     /**
@@ -34,28 +34,28 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $input = $request->all();
+    // public function store(Request $request)
+    // {
+    //     $input = $request->all();
 
-        thantai::store($input);
+    //     thantai::store($input);
         
 
 
-        return view('mommo.thantai')->with('thantai', 'Đặt thành công');
-    }
-    public function postVali(Request $request)
-    {   
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required|unique:posts|max:255|alpha',
-            'address' => 'required|max:255',
-            'telephonenumber' => 'required|max:11',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    }
+    //     return view('mommo.thantai')->with('thantai', 'Đặt thành công');
+    // }
+    // public function postVali(Request $request)
+    // {   
+    //     $input = $request->all();
+    //     $validator = Validator::make($input, [
+    //         'name' => 'required|unique:posts|max:255|alpha',
+    //         'address' => 'required|max:255',
+    //         'telephonenumber' => 'required|max:11',
+    //     ]);
+    //     if ($validator->fails()) {
+    //         return redirect()->back()->withErrors($validator)->withInput();
+    //     }
+    // }
     // public function error_page(){
     //     return view('mommo.404');
     // }

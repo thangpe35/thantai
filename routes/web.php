@@ -13,6 +13,8 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::resource('thantai',ArticleController::class);
-Route::post('thantai','App\Http\Controllers\ArticleController@postVali');
+// Route::resource('thantai',ArticleController::class);
+// Route::post('thantai','App\Http\Controllers\ArticleController@postVali');
 // Route::get('thantai/404','App\Http\Controllers\ArticleController@error_page');
+// Route::get('admin_layout','App\Http\Controllers\AdminController@index');
+// Route::get('admin_table','App\Http\Controllers\AdminController@showtable');
