@@ -7,6 +7,7 @@ Route::group([
     'namespace' => $namespace
     ], function () {
     Route::group(['prefix' => '/'], function () {
-        Route::get('/index', 'ThantaiController@index');  
+        Route::get('', 'ThantaiController@index');  
+        Route::post('', 'ThantaiController@index');  
     });
 });
