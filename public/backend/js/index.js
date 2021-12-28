@@ -28,15 +28,46 @@ var x = setInterval(function () {
     }
 }, 1000);
 
-function cong(){
-    // get value textbox
-    var incre = document.getElementById('textbox').value;
-    // công thêm 1 đơn vị rồi gán chở lại cho textbox 
-    document.getElementById('textbox').value = parseInt(incre) +1;
+// function cong(){
+//     // get value textbox
+//     var incre = document.getElementById('textbox').value;
+//     // công thêm 1 đơn vị rồi gán chở lại cho textbox 
+//     document.getElementById('textbox').value = parseInt(incre) +1;
 
     
 
     
 
-}
+// }
+
+
+$(document).ready(function(){
+    $(".increment-btn").click(function(e){
+        e.preventDefault();       
+        var inc_value = $(".input-qty").val();
+        console.log(inc_value)
+        var value = parseInt(inc_value,10);
+        console.log(value)
+        value = isNaN(value) ? "" : value;
+        if(value < 10){
+            value++;
+            $(".input-qty").val(value);
+        }
+    });
+});  
+
+$(document).ready(function(){
+    $(".decrement-btn").click(function(e){
+        e.preventDefault();       
+        var inc_value = $(".input-qty").val();
+        console.log(inc_value)
+        var value = parseInt(inc_value,10);
+        console.log(value)
+        value = isNaN(value) ? "" : value;
+        if(value > 1){
+            value--;
+            $(".input-qty").val(value);
+        }
+    });
+});  
 

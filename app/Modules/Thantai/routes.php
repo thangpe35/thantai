@@ -7,7 +7,9 @@ Route::group([
     'namespace' => $namespace
     ], function () {
     Route::group(['prefix' => '/'], function () {
-        Route::get('', 'ThantaiController@index');  
-        Route::post('', 'ThantaiController@index');  
+        // Route::resources('thantai' ,'ThantaiController@index' );
+        Route::get('index', 'ThantaiController@index');  
+        Route::post('index', 'ThantaiController@store');  
+        Route::post('index', 'ThantaiController@postVali');  
     });
 });

@@ -15,10 +15,14 @@ class CreateThantaisTable extends Migration
     {
         Schema::create('thantais', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->string('address', 255);
+            $table->string('name',255);
+            $table->string('address',255);
             $table->integer('telephonenumber');
             $table->timestamps();
+            $table->string('branch');
+            $table->string('message');
+            // $table->string('img');
+            $table->integer('qty');
         });
     }
 

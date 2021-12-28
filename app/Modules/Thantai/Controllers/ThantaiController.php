@@ -3,8 +3,8 @@ namespace App\Modules\Thantai\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Validator;
+use App\Modules\Thantai\Model\thantai;
 class ThantaiController extends Controller
 {
     /**
@@ -34,28 +34,31 @@ class ThantaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $input = $request->all();
+    public function store(Request $request)
 
-    //     thantai::store($input);
-        
+    {
+        $input = $request->all();
+
+        thantai::store($input);
+
+        return redirect()->back()->with('thantai', 'Đặt thành công');
+
+    }
 
 
-    //     return view('mommo.thantai')->with('thantai', 'Đặt thành công');
-    // }
-    // public function postVali(Request $request)
-    // {   
-    //     $input = $request->all();
-    //     $validator = Validator::make($input, [
-    //         'name' => 'required|unique:posts|max:255|alpha',
-    //         'address' => 'required|max:255',
-    //         'telephonenumber' => 'required|max:11',
-    //     ]);
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->withErrors($validator)->withInput();
-    //     }
-    // }
+
+    public function postVali(Request $request)
+    {   
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'name' => 'required|unique:posts|max:255|alpha',
+            'address' => 'required|max:255',
+            'telephonenumber' => 'required|max:11',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    }
     // public function error_page(){
     //     return view('mommo.404');
     // }
