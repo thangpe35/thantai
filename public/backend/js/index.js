@@ -24,22 +24,11 @@ var x = setInterval(function () {
     // If the count down is finished, write some text
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("countDown").innerHTML = "EXPIRED";
+        document.getElementById("countDown").innerHTML = "Đã hết hạn xin vui lòng quay lại sau";
     }
 }, 1000);
 
-// function cong(){
-//     // get value textbox
-//     var incre = document.getElementById('textbox').value;
-//     // công thêm 1 đơn vị rồi gán chở lại cho textbox 
-//     document.getElementById('textbox').value = parseInt(incre) +1;
-
-    
-
-    
-
-// }
-
+// qty product
 
 $(document).ready(function(){
     $(".increment-btn").click(function(e){
@@ -70,4 +59,7 @@ $(document).ready(function(){
         }
     });
 });  
+
+
+
 

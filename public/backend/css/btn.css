@@ -65,10 +65,22 @@ p {
     margin-top: 5px;
 }
 
+
 @media(max-width:767px){
+    
+    
+    .container-fluid{
+        background-image: url("https://github.com/thangpe35/img/blob/main/tt.jpg");
+    }
     .font-product {
         font-size: 12px;
         text-align: center;
         margin-top: 5px;
     }
+    
+}
+
+#countDown{
+    color: white;
+    font-size: 20px;
 }

@@ -12,6 +12,7 @@ class thantai extends Model
     // protected $fillable = ["name","address","telephonenumber","created_ad","branch","textarea","nameproduct","qty"];
 
     public static function store($data){
+        echo "<script>console.log('test_2');</script>";
         $thantai = new thantai;
         $thantai->name = $data['name'];
         $thantai->address = $data['address'];

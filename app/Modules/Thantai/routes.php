@@ -8,8 +8,8 @@ Route::group([
     ], function () {
     Route::group(['prefix' => '/'], function () {
         // Route::resources('thantai' ,'ThantaiController@index' );
-        Route::get('index', 'ThantaiController@index');  
-        Route::post('index', 'ThantaiController@store');  
-        Route::post('index', 'ThantaiController@postVali');  
+        Route::get('order', 'ThantaiController@index');  
+        Route::post('order', 'ThantaiController@store');  
+        //Route::post('order', 'ThantaiController@postVali');  
     });
 });

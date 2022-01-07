@@ -48,7 +48,7 @@
                     <div class="h5" style="margin-right: 10px;">Phút</div>
                     <div class="h5" style="margin-right: 10px;">Giây</div>
                 </div>
-                <form action="{{url('/index')}}" method="post" enctype="multipart/form-data">
+                <form action="{{url('order')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4 d-flex justify-content-center">
                         <input type="text" class="col-form-label " style="width: 300px;" id="name" name="name" placeholder="Họ và tên">
@@ -69,7 +69,7 @@
                         @endif
                     </div>
                     <div class="mb-4 d-flex justify-content-center">
-                        <input type="text" class="col-form-label " style="width: 300px;" id="date" name="date" placeholder="Ngày giao">
+                        <input type="date" class="col-form-label " style="width: 300px;" id="date" name="date" value="<?php echo date('d-m-Y');?>">
                     </div>
                     <div class="mb-4 d-flex justify-content-center">
                         <select class="form-select" aria-label="Default select example" style="width: 300px;" name="branch">
@@ -87,7 +87,7 @@
                             <div class="d-flex flex-row">
                                 <div class="element p-2 bd-highlight">
                                     <img src="./img/thantai.jpg" class="img-fluid" name="img">
-                                    <p class="font-product">10 Chỉ nhẫn ép tròn</p>                                   
+                                    <p class="font-product">10 Chỉ nhẫn ép tròn</p>
                                     <div class="d-flex justify-content-center">
                                         <div class="buttons_added">
                                             <input class="minus is-form decrement-btn" type="button" value="-">
@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="element p-2 bd-highlight">
+                                <div class="element p-2 bd-highlight">
                                     <img src="./img/thantai.jpg" class="img-fluid ">
                                     <p class="font-product">10 Chỉ nhẫn ép tròn</p>
                                     <div class="d-flex justify-content-center">
@@ -117,12 +117,12 @@
                                             <input class="plus is-form increment-btn" type="button" value="+">
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
 
                         </div>
                     </div>
-                    <!-- <div class="mb-4 d-flex justify-content-center">
+                    <div class="mb-4 d-flex justify-content-center">
                         <div class="d-flex flex-row justify-content-center ">
                             <div class="d-flex flex-row">
                                 <div class="element p-2 bd-highlight">
@@ -239,7 +239,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
 
                     <div class="d-grid gap-2 warning mb-4 d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary text-uppercase text-danger" style="background: #faf01d; width: 300px;">Đặt trước ngay</button>

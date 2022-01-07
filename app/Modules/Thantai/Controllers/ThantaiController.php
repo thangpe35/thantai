@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Modules\Thantai\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Modules\Thantai\Model\thantai;
+use Illuminate\Support\Facades\Session;
+use App\connect;
+
 class ThantaiController extends Controller
 {
     /**
@@ -12,8 +16,11 @@ class ThantaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    public function index()
+    public function api(Request $request)
+    {
+        
+    }
+    public function index(Request $request)
     {
         return view('Thantai::index');
     }
@@ -37,18 +44,69 @@ class ThantaiController extends Controller
     public function store(Request $request)
 
     {
+        echo "<script>console.log('test');</script>";
+
+        
+
         $input = $request->all();
 
-        thantai::store($input);
+        var_dump($input);
+        //echo "<script>console.log(" + $input + ");</script>";
 
+        var_dump($request->name);
+
+        $username = $request->name;
+        $address = $request->address;
+        $telephonenumber = $request->telephonenumber;
+        $date = $request->date;
+        $branch = $request->branch;
+        $textarea = $request->textarea;
+        $qty_input = $request->qty_input;
+
+        $req_param = "{
+            'fullname': '$username',
+            'address': '$address',
+            'phone': '$telephonenumber',
+            'deliverdate': '$date',
+            'branch': ' $branch',
+            'message':'$textarea',
+            'quantity':'$qty_input'
+        }";
+        echo "$req_param";
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'http://118.70.146.150:8096/order/push',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $req_param,
+            CURLOPT_HTTPHEADER => array(
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        echo $response;
+        echo '"fullname": "$username"';
+
+        curl_close($curl);
+        // echo $response;
+        // thantai::store($input);
+        
         return redirect()->back()->with('thantai', 'Đặt thành công');
 
+       
     }
 
 
 
     public function postVali(Request $request)
-    {   
+    {
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'required|unique:posts|max:255|alpha',
