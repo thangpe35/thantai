@@ -48,7 +48,7 @@
                     <div class="h5" style="margin-right: 10px;">Phút</div>
                     <div class="h5" style="margin-right: 10px;">Giây</div>
                 </div>
-                <form action="{{url('order')}}" method="post" enctype="multipart/form-data">
+                <form action="{{url('thantai')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4 d-flex justify-content-center">
                         <input type="text" class="col-form-label " style="width: 300px;" id="name" name="name" placeholder="Họ và tên">
