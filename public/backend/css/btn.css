@@ -1,11 +1,12 @@
 .container-fluid {
-    font-family: SVN Gotham;
+    font-family: 'Work Sans', sans-serif;
     background: #9b1401;
 }
 
 p {
     color: white;
 }
+
 .buttons_added {
     opacity: 1;
     display: inline-block;
@@ -59,6 +60,7 @@ p {
     -webkit-appearance: none;
     margin: 0;
 }
+
 .font-product {
     font-size: 18px;
     text-align: center;
@@ -66,21 +68,69 @@ p {
 }
 
 
-@media(max-width:767px){
+/* @media(max-width:767px) {
+
+
+    .container-fluid {
+    background-image: linear-gradient(to right,#b30d11, #d2151b);
     
-    
-    .container-fluid{
-        background-image: url("https://github.com/thangpe35/img/blob/main/tt.jpg");
+
     }
+
     .font-product {
         font-size: 12px;
         text-align: center;
         margin-top: 5px;
     }
+
+    .dss {
+        display: none;
+    }
+    .mobile-col{
+        display: block !important;
+        background-image: url("../../img/tt.jpg") !important;
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;   
+    }
+} */
+@media(max-width:1024px) {
+
+    .container-fluid {
+    background-image: linear-gradient(to right,#b30d11, #d2151b);
     
+    }
+
+    .font-product {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 5px;
+    }
+
+    .dss {
+        display: none;
+    
+    }
+    .mobile-col{
+        display: block !important;
+        background-image: url("../../img/tt.jpg") !important;
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;  
+        /* position: relative; */
+    }
+    /* .mobile-col::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #9b130134 !important;
+        z-index: 1;
+    } */
 }
 
-#countDown{
-    color: white;
+#countDown {
     font-size: 20px;
 }
