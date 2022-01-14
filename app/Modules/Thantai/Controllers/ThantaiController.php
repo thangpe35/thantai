@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Modules\Thantai\Model\thantai;
 use Illuminate\Support\Facades\Session;
 use App\connect;
+use Exception;
 
 class ThantaiController extends Controller
 {
@@ -18,7 +19,6 @@ class ThantaiController extends Controller
      */
     public function api(Request $request)
     {
-        
     }
     public function index(Request $request)
     {
@@ -42,81 +42,49 @@ class ThantaiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        echo "<script>console.log('test');</script>";
-
-        
-
-        $input = $request->all();
-
-        var_dump($input);
-        //echo "<script>console.log(" + $input + ");</script>";
-
-        var_dump($request->name);
-
-        $username = $request->name;
-        $address = $request->address;
-        $telephonenumber = $request->telephonenumber;
-        $date = $request->date;
-        $branch = $request->branch;
-        $textarea = $request->textarea;
-        $qty_input = $request->qty_input;
-
-        $req_param = "{
-            'fullname': '$username',
-            'address': '$address',
-            'phone': '$telephonenumber',
-            'deliverdate': '$date',
-            'branch': ' $branch',
-            'message':'$textarea',
-            'quantity':'$qty_input'
-        }";
-        echo "$req_param";
-
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://118.70.146.150:8096/order/push',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => $req_param,
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json'
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        echo $response;
-        echo '"fullname": "$username"';
-
-        curl_close($curl);
-        // echo $response;
-        // thantai::store($input);
-        
-        return redirect()->back()->with('thantai', 'Đặt thành công');
-
-       
-    }
-
-
-
-    public function postVali(Request $request)
-    {
-        $input = $request->all();
-        $validator = Validator::make($input, [
-            'name' => 'required|unique:posts|max:255|alpha',
-            'address' => 'required|max:255',
-            'telephonenumber' => 'required|max:11',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        $api = new connect();
+        {
+            
+            $input = $request->all();
+            $validator = Validator::make($input, [
+                'name' => 'required|unique:posts|max:255|alpha',
+                'address' => 'required|max:255',
+                'telephonenumber' => 'required|max:11',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+                die;
+            }
+        } 
+        try {
+            $req_param = [
+                'fullname' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->telephonenumber,
+                'deliverdate' => date('d/m/Y h:i:s', strtotime($request->date)),
+                'branch' => $request->branch,
+                'message' => $request->textarea,
+                'quantity' => $request->qty_input
+            ];
+            $response = json_decode($api->apipost("http://118.70.146.150:8096/order/push", json_encode($req_param)));
+            if ($response->resultCode != 000) {
+                return redirect()->back()->with("error", "Lỗi không đặt được sản phẩm");
+                // dd("looix");
+            } else {
+                return redirect()->back()->with("success", "Đặt hàng thành công");
+                // dd("ok");
+            }
+        } catch (Exception $e) {
+            return redirect()->back()->with("warning", "Hệ thống đang bận");
         }
     }
+
+    // public function postVali(Request $request)
+    
+
+
+    // }
     // public function error_page(){
     //     return view('mommo.404');
     // }
